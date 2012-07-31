@@ -8,16 +8,16 @@ class PollsController < ApplicationController
     @poll = Poll.new
     3.times do
       question = @poll.questions.build
-      4.times { question.responses.build }
+      #4.times { question.responses.build }
     end
   end
   
   def create
     @poll = Poll.new(params[:poll])
     @poll.edit_url = make_edit_url
-    @question = Question.new(params[:question])
-    @response = Response.new(params[:response])
-    if @poll.save && @question.save && @response.save
+    #@question = Question.new(params[:poll][:questions_attributes])
+    # @response = Response.new(params[:responses_attributes])
+    if @poll.save #&& @question.save && @response.save
       redirect_to polls_path, :flash => {:success => "Go to localhost:3000/#{@poll.edit_url} to edit your poll. Or go to localhost:3000/polls/#{@poll.id} to vote."}
     else
       flash[:error] = "Something went horribly wrong"
@@ -37,6 +37,15 @@ class PollsController < ApplicationController
     @poll = Poll.find(params[:id])
     if @poll.update_attributes(params[:poll])
       redirect_to polls_path, :flash => {:success => "Success!"}
+    else
+      flash[:error] = "Something went horribly wrong"
+      render :new
+    end
+  end
+  
+  def destroy
+    if Poll.Find(params[:id]).destroy
+      redirect_to root_path, :flash => {:success => "Poll deleted!"}
     else
       flash[:error] = "Something went horribly wrong"
       render :new

@@ -1,0 +1,9 @@
+<h1>Fill out the Poll below:</h1>
+
+<%= form_for @response do |p| %>
+	<%= @questions.each do |question| %>
+	<%= p.label "#{question.content}" %>
+	<%= p.text_area :text, :rows => 3 %>
+	<% end %>
+	<%= p.submit "Create" %>
+<% end %>

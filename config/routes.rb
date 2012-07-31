@@ -1,8 +1,12 @@
 Pollster::Application.routes.draw do
-  resources :polls
+  #match '/polls/:id'  => 'responses#create'
+  resources :polls do
+    resources :responses
+  end
+  match '/responses' => 'polls#index'
   resources :questions
-  resources :responses
-  match '/:slug' => 'polls#edit'
+  #resources :responses
+  match '/:slug'      => 'polls#edit'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

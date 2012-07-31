@@ -1,7 +1,7 @@
 <h1>Create a new Poll:</h1>
 
 <%= form_for @poll do |p| %>
-	<%= p.label "Poll Title"%>
+	<%= p.label :title %>
 	<%= p.text_field :title %>
 	
 	<%= p.fields_for :questions do |q| %>

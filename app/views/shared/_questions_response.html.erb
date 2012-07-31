@@ -4,5 +4,7 @@
 <%= p.check_box :_destroy %>
 <%= p.label :_destroy, "Delete question above" %>
 <p>
-
-
+	<%= p.fields_for :responses do |q| %>
+	<%= render 'shared/response', :p => q %><br>
+	<% end %>
+<p>

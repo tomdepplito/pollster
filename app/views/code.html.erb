@@ -33,3 +33,11 @@
 	</li>
 <% end %>
 </ol>
+
+<%= form_for @response do |p| %>
+	<%= @questions.each do |question| %>
+	<%= p.label "#{question.content}" %>
+	<%= p.text_area :text, :rows => 3 %>
+	<% end %>
+	<%= p.submit "Create" %>
+<% end %>
