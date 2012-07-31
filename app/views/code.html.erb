@@ -1,0 +1,35 @@
+<h1>Create a new Poll:</h1>
+
+<%= form_for @poll do |p| %>
+	<%= p.label "Poll Title"%>
+	<%= p.text_field :title %>
+	
+	<%= p.fields_for :questions do |q| %>
+	<fieldset>
+		<%= q.label "Question" %>
+		<%= q.text_field :content %>
+		<%= q.label "Delete question above" %>
+		<%= q.check_box :_destroy %>
+		<%= p.fields_for :responses do |r| %>
+			<%= r.label "Response" %>
+			<%= r.text_field :text %>
+			<%= r.label "Delete response above" %>
+			<%= r.check_box :_destroy %>
+		<% end %>
+	</fieldset>
+	<% end %>
+	<%= p.submit "Create" %>
+<% end %>
+
+<ol>
+<%= for question in @poll.questions %>
+	<li>
+		<%= question.content %>
+		<ul>
+			<% for response in question.responses %>
+				<li><%= response.text %></li>
+			<% end %>
+		</ul>
+	</li>
+<% end %>
+</ol>

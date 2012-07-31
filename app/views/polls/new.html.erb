@@ -1,0 +1,13 @@
+<h1>Create a new Poll:</h1>
+
+<%= form_for @poll do |p| %>
+	<%= p.label "Poll Title"%>
+	<%= p.text_field :title %>
+	
+	<%= p.fields_for :questions do |q| %>
+	<%= render 'shared/questions', :p => q %><br>
+	<% end %>
+	<%= p.submit "Create" %>
+<% end %>	
+
+

@@ -1,0 +1,8 @@
+<h1>Welcome to Pollster!</h1>
+<h2>Here are some polls:</h2><br>
+
+<%= link_to "Create a new Poll", new_poll_path %><br>
+
+<% @polls.each do |poll| %>
+	<%= link_to "#{poll.title}", poll_path(poll) %><br>
+<% end %>

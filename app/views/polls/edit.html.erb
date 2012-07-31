@@ -1,0 +1,7 @@
+<h1>Edit Poll:</h1><br>
+
+<%= form_for @poll do |f| %>
+	<%= f.label "Title" %>
+	<%= f.text_field :title %><br>
+	<%= f.submit "Submit" %>
+<% end %>

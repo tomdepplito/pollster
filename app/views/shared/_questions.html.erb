@@ -1,0 +1,10 @@
+<p>
+<%= p.label "Question" %>
+<%= p.text_field :content %>
+<%= p.label "Delete question above" %>
+<%= p.check_box :_destroy %>
+<p>
+<%= p.fields_for :responses do |q| %>
+	<%= render 'shared/responses', :p => q %>
+<% end %>
+
